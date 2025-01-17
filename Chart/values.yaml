@@ -1,0 +1,15 @@
+image:
+  repo: "ikambarov/petclinic"
+  tag: "v1"
+
+replicas: 2
+
+hpa:
+  min: 2
+  max: 10
+  target: 75
+
+requests:
+  cpu: "100m"
+  memory: "100Mi"
+  
