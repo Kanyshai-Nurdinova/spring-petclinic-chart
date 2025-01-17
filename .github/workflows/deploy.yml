@@ -15,5 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check Helm Version
+      - name: Generate Kubecfg
+        uses: vbem/kubeconfig4sa@v1
+        with:
+          server:     ${{ secrets.K8S_SERVER_ADDRESS }}
+          ca-base64:  ${{ secrets.K8S_CA_BASE64 }}
+          token:      ${{ secrets.K8S_SA_TOKEN }}
+          namespace:  default
+
+      - name: Install App
         run: helm upgrade --install myapp -f customvalues.yaml ./Chart/
